@@ -15,7 +15,7 @@ public class Main {
                 f.redo(charList);
             }
             else{
-                System.out.println("На клетке стоит " + charList[1].name + "!");
+                System.out.println("На клетке находится " + charList[1].name + "!");
                 Battle b = new Battle(charList[0], charList[1], f);
                 if(b.flag) {
                     charList[1].active = false;
