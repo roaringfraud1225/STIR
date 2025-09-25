@@ -24,13 +24,21 @@ public class Battle {
         while(attacker.active && defender.active){
             System.out.println("Ход " + attacker.name + "a!");
             Scanner scan = new Scanner(System.in);
-            System.out.println("Нажмите 1, если хотите атаковать, и 2, если хотите действовать.");
+            System.out.println("Нажмите 1, если хотите атаковать, 2, если хотите действовать, 3, если хотите проверить врага, 4, если хотите проверить себя.");
             int action = scan.nextInt();
             if(action == 1){
                 attacker.attackEnemy(defender);
             }
-            else{
+            if(action == 2){
                 attacker.act(defender);
+            }
+            if(action == 3)
+            {
+                attacker.check(defender);
+            }
+            if(action == 4)
+            {
+                attacker.check(attacker);
             }
             if(defender.active){
                 System.out.println("Ход " + defender.name + "a!");

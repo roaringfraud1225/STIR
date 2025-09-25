@@ -54,7 +54,7 @@ public class Field {
     }
 
     public void getTileInfo(int i, int j){
-        int type = gameField[i][j].getTerrain();
+        int type = gameField[i][j].getTerrain(), owner = gameField[i][j].stander;
         if(type == 0) //Plains
             System.out.println("На клетке с координатами ("+ i + ", " + j + ") находится равнина.");
         if(type == 1) //Water
@@ -67,6 +67,12 @@ public class Field {
             System.out.println("На клетке с координатами ("+ i + ", " + j + ") находится болото.");
         if(type == 5) //
             System.out.println("На клетке с координатами ("+ i + ", " + j + ") находится болото.");
+        if(owner == ' ')
+            System.out.println("В данный момент на ней никого нет.");
+        if(owner == 'Ф')
+            System.out.println("В данный момент на ней стоит " + charList[1].name + ".");
+        if(owner == 'Ш')
+            System.out.println("В данный момент на ней стоит " + charList[0].name + ".");
     }
 
     public void fieldWork(){

@@ -53,4 +53,15 @@ public class Guy {
     public void act(Guy enemy){
 
     }
+
+    public void check(Guy enemy){
+        if(enemy.getClass() == Spy.class){
+            System.out.println("* ШТИРЛИЦ - " + enemy.lv + " УР, " + enemy.hp + " ОЗ, " + enemy.attack + " АТК " + enemy.defence + " ЗАЩ.");
+            System.out.println("* ШТАНДАРТЕНФЮРЕР СС. ПЕРВОКЛАССНЫЙ СОВЕТСКИЙ РАЗВЕДЧИК, РЕШИВШИЙ ВЗЯТЬ ВСЁ В СВОИ РУКИ.");
+        }
+        if(enemy.getClass() == Soldier.class){
+            System.out.println("* ФАШИСТ - " + enemy.lv + " УР, " + enemy.hp + " ОЗ, " + enemy.attack + " АТК " + enemy.defence + " ЗАЩ.");
+            System.out.println("* РЯДОВОЙ СОЛДАТ ГЕРМАНСКОГО РЕЙХА. ВРАГ ЧЕЛОВЕЧЕСТВА, КОТОРОМУ ПРОМЫЛИ МОЗГИ ЕМУ ПОДОБНЫЕ.");
+        }
+    }
 }

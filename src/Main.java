@@ -34,8 +34,8 @@ public class Main {
     }
     public static void main(String[] args) {
         Guy[] charList = new Guy[10];
-        charList[0] = new Spy(100, 100, 7, 9, new Position(0, 0), 1);
-        charList[1] = new Soldier(150,150, 8, 10, new Position(2, 3), 1);
+        charList[0] = new Spy(100, 100, 7, 2, new Position(0, 0), 1);
+        charList[1] = new Soldier(150,150, 8, 4, new Position(2, 3), 1);
         Field f = new Field();
         f.redo(charList);
         actCharacter(charList, f);
