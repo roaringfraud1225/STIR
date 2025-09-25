@@ -9,17 +9,23 @@ public class Spy extends Guy{
 
     @Override
     public void act(Guy enemy){
-        enemy.exhaustion = Math.max(100, enemy.exhaustion + lv * 20);
+        enemy.exhaustion = Math.min(100, enemy.exhaustion + lv * 20);
         if(enemy.exhaustion == 100)
         {
             enemy.active = false;
-            System.out.println(name + " вербует " + enemy.name + "а!");
+            System.out.println("* " + name + " вербует " + enemy.name + "а!");
         }
         else{
             Random rand = new Random();
 
-            System.out.println(name + " убеждает " + enemy.name + "а в том, что " + responses[rand.nextInt(5)]);
-            System.out.println(enemy.name + "верит ему всё больше...");
+            System.out.println("* " + name + " убеждает " + enemy.name + "а в том, что " + responses[rand.nextInt(5)]);
+            System.out.println("* " + enemy.name + " верит ему всё больше...");
+        }
+        exp += 5;
+        if(exp >= lv * 10){
+            exp -= lv*10;
+            lv++;
+            System.out.println("* " + name + " повышает свой уровень до " + lv + "-го!");
         }
     }
 }

@@ -2,25 +2,52 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class Field {
-    protected Tile[][] gameField = new Tile[20][20];
+    public Tile[][] gameField = new Tile[5][5];
+
+    protected Guy[] charList;
     Random rand;
+
     public Field(){
         rand = new Random();
-        for(int i = 0; i < 20; i++)
+        for(int i = 0; i < 5; i++)
         {
-            for(int j = 0; j < 20; j++)
+            for(int j = 0; j < 5; j++)
             {
-                this.gameField[i][j] = new Tile(rand.nextInt(5));
+                this.gameField[i][j] = new Tile(rand.nextInt(5), true);
             }
         }
     }
+    public void redo(Guy[] charList){
+        this.charList = charList;
+        for(int i = 0; i < 5; i++){
+            for(int j = 0; j < 5; j++)
+            {
+                gameField[i][j].isEmpty = true;
+                gameField[i][j].stander = ' ';
+            }
+        }
+        if(charList[0].active) {
+            this.gameField[charList[0].getPos().getX()][charList[0].getPos().getY()].stander = 'Ш';
+            this.gameField[charList[0].getPos().getX()][charList[0].getPos().getY()].isEmpty = false;
+        }
+        if(charList[1].active) {
+            this.gameField[charList[1].getPos().getX()][charList[1].getPos().getY()].stander = 'Ф';
+            this.gameField[charList[1].getPos().getX()][charList[1].getPos().getY()].isEmpty = false;
+        }
+    }
+
+    public Tile[][] getGameField() {
+        return gameField;
+    }
 
     public void printField(){
-        for(int i = 0; i < 20; i++)
+        for(int i = 0; i < 5; i++)
         {
-            for(int j = 0; j < 20; j++)
+            for(int j = 0; j < 5; j++)
             {
-                System.out.print(gameField[i][j].getTerrain() + " ");
+                if(gameField[i][j].stander != ' ')
+                    System.out.print(gameField[i][j].stander + " ");
+                else System.out.print(gameField[i][j].getTerrain() + " ");
             }
             System.out.println();
         }
