@@ -2,7 +2,8 @@ import javafx.geometry.Pos;
 
 import javax.management.BadAttributeValueExpException;
 
-public class Guy {
+public class Guy implements Movable{
+    protected int step = 0;
     protected String name;
     protected int hp;
     protected int attack;
@@ -25,10 +26,25 @@ public class Guy {
         this.exp = 0;
     }
 
-    public void moveToPos(int x, int y){
-        this.pos = new Position(x, y);
+    @Override
+    public boolean canMoveTo(int x, int y, Field f){
+        if(f.gameField[x][y].getTerrain() == 1)
+        {
+            System.out.println("На этой клетке находится здание. У Вас нет ключей от него.");
+            return false;
+        }
+        if(f.gameField[x][y].getTerrain() == 4)
+        {
+            System.out.println("На этой клетке находится баррикада. Вы не можете сюда переместиться.");
+            return false;
+        }
+        return true;
     }
-
+    @Override
+    public void moveToPos(int x, int y, Field f){
+        if(canMoveTo(x, y, f))
+            this.pos = new Position(x, y);
+    }
     public Position getPos() {
         return pos;
     }

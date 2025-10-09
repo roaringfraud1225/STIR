@@ -27,12 +27,18 @@ public class Field {
             }
         }
         if(charList[0].active) {
-            this.gameField[charList[0].getPos().getX()][charList[0].getPos().getY()].stander = 'Ш';
+            this.gameField[charList[0].getPos().getX()][charList[0].getPos().getY()].stander = 'Д';
             this.gameField[charList[0].getPos().getX()][charList[0].getPos().getY()].isEmpty = false;
+            if(this.gameField[charList[0].getPos().getX()][charList[0].getPos().getY()].getTerrain() == 1 || this.gameField[charList[0].getPos().getX()][charList[0].getPos().getY()].getTerrain() == 4){
+                this.gameField[charList[0].getPos().getX()][charList[0].getPos().getY()].terrain--;
+            }
         }
         if(charList[1].active) {
             this.gameField[charList[1].getPos().getX()][charList[1].getPos().getY()].stander = 'Ф';
             this.gameField[charList[1].getPos().getX()][charList[1].getPos().getY()].isEmpty = false;
+            if(this.gameField[charList[0].getPos().getX()][charList[0].getPos().getY()].getTerrain() == 1 || this.gameField[charList[0].getPos().getX()][charList[0].getPos().getY()].getTerrain() == 4){
+                this.gameField[charList[0].getPos().getX()][charList[0].getPos().getY()].terrain--;
+            }
         }
     }
 
@@ -56,15 +62,15 @@ public class Field {
     public void getTileInfo(int i, int j){
         int type = gameField[i][j].getTerrain(), owner = gameField[i][j].stander;
         if(type == 0) //Plains
-            System.out.println("На клетке с координатами ("+ i + ", " + j + ") находится равнина.");
-        if(type == 1) //Water
-            System.out.println("На клетке с координатами ("+ i + ", " + j + ") находится лужа.");
-        if(type == 2) //Sand
-            System.out.println("На клетке с координатами ("+ i + ", " + j + ") находятся пески.");
+            System.out.println("На клетке с координатами ("+ i + ", " + j+ ") находится равнина.");
+        if(type == 1) //Shack
+            System.out.println("На клетке с координатами ("+ i + ", " + j + ") находится здание.");
+        if(type == 2) //Road
+            System.out.println("На клетке с координатами ("+ i + ", " + j + ") находится дорога.");
         if(type == 3) //Hills
-            System.out.println("На клетке с координатами ("+ i + ", " + j + ") находится гора.");
-        if(type == 4) //Swamp
-            System.out.println("На клетке с координатами ("+ i + ", " + j + ") находится болото.");
+            System.out.println("На клетке с координатами ("+ i + ", " + j + ") находится холм.");
+        if(type == 4) //Barricade
+            System.out.println("На клетке с координатами ("+ i + ", " + j + ") находится баррикада.");
         if(type == 5) //
             System.out.println("На клетке с координатами ("+ i + ", " + j + ") находится болото.");
         if(owner == ' ')
@@ -73,22 +79,5 @@ public class Field {
             System.out.println("В данный момент на ней стоит " + charList[1].name + ".");
         if(owner == 'Ш')
             System.out.println("В данный момент на ней стоит " + charList[0].name + ".");
-    }
-
-    public void fieldWork(){
-        System.out.println("Нажмите 1, если хотите вывести игровое поле, 2 - если хотите узнать тип местности в клетке, 3 - чтобы выйти.");
-        Scanner input = new Scanner(System.in);
-        int type = input.nextInt();
-        if(type == 1)
-        {
-            printField();
-            fieldWork();
-        }
-        if(type == 2) {
-            System.out.println("Введите координаты клетки.");
-            int x = input.nextInt(), y = input.nextInt();
-            getTileInfo(x, y);
-            fieldWork();
-        }
     }
 }

@@ -1,0 +1,308 @@
+@startuml
+
+/' diagram meta data start
+config=StructureConfiguration;
+{
+  "projectClassification": {
+    "searchMode": "OpenProject", // OpenProject, AllProjects
+    "includedProjects": "",
+    "pathEndKeywords": "*.impl",
+    "isClientPath": "",
+    "isClientName": "",
+    "isTestPath": "",
+    "isTestName": "",
+    "isMappingPath": "",
+    "isMappingName": "",
+    "isDataAccessPath": "",
+    "isDataAccessName": "",
+    "isDataStructurePath": "",
+    "isDataStructureName": "",
+    "isInterfaceStructuresPath": "",
+    "isInterfaceStructuresName": "",
+    "isEntryPointPath": "",
+    "isEntryPointName": "",
+    "treatFinalFieldsAsMandatory": false
+  },
+  "graphRestriction": {
+    "classPackageExcludeFilter": "",
+    "classPackageIncludeFilter": "",
+    "classNameExcludeFilter": "",
+    "classNameIncludeFilter": "",
+    "methodNameExcludeFilter": "",
+    "methodNameIncludeFilter": "",
+    "removeByInheritance": "", // inheritance/annotation based filtering is done in a second step
+    "removeByAnnotation": "",
+    "removeByClassPackage": "", // cleanup the graph after inheritance/annotation based filtering is done
+    "removeByClassName": "",
+    "cutMappings": false,
+    "cutEnum": false,
+    "cutTests": true,
+    "cutClient": true,
+    "cutDataAccess": false,
+    "cutInterfaceStructures": false,
+    "cutDataStructures": false,
+    "cutGetterAndSetter": false,
+    "cutConstructors": false
+  },
+  "graphTraversal": {
+    "forwardDepth": 3,
+    "backwardDepth": 3,
+    "classPackageExcludeFilter": "",
+    "classPackageIncludeFilter": "",
+    "classNameExcludeFilter": "",
+    "classNameIncludeFilter": "",
+    "methodNameExcludeFilter": "",
+    "methodNameIncludeFilter": "",
+    "hideMappings": false,
+    "hideDataStructures": false,
+    "hidePrivateMethods": true,
+    "hideInterfaceCalls": true, // indirection: implementation -> interface (is hidden) -> implementation
+    "onlyShowApplicationEntryPoints": false, // root node is included
+    "useMethodCallsForStructureDiagram": "ForwardOnly" // ForwardOnly, BothDirections, No
+  },
+  "details": {
+    "aggregation": "GroupByClass", // ByClass, GroupByClass, None
+    "showClassGenericTypes": true,
+    "showMethods": true,
+    "showMethodParameterNames": true,
+    "showMethodParameterTypes": true,
+    "showMethodReturnType": true,
+    "showPackageLevels": 2,
+    "showDetailedClassStructure": true
+  },
+  "rootClass": "Main",
+  "extensionCallbackMethod": "" // qualified.class.name#methodName - signature: public static String method(String)
+}
+diagram meta data end '/
+
+
+
+digraph g {
+    rankdir="TB"
+    splines=polyline
+    
+
+'nodes 
+subgraph cluster_1982676184 { 
+   	label=Battle
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   Battle1982676184[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Battle</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >#   attacker: Guy [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   defender: Guy [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   flag: boolean [1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ Battle(attacker: Guy, defender: Guy, field: Field)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ theBattleOngoing(field: Field)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ whoWon()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+
+subgraph cluster_2390489 { 
+   	label=Main
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   Main2390489[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Main</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ actCharacter(charList: Guy[], f: Field)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ main(args: String[])</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+
+subgraph cluster_2606798 { 
+   	label=Tile
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   Tile2606798[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Tile</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >#   isEmpty: boolean [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   stander: char [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   terrain: int [1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ Tile(terrain: int, isEmpty: boolean)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getTerrain(): int</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getTerrainChar(): int</TD></TR>
+<TR><TD ALIGN="LEFT" >+ isEmpty(): boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >+ setEmpty(empty: boolean)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ setTerrain(terrain: char)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+
+subgraph cluster_365946526 { 
+   	label=Soldier
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   Soldier365946526[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Soldier</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >#   step: int [1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ Soldier(hp: int, max_hp: int, attack: int, defence: int, pos: Position, lv: int)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ act(enemy: Guy)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+
+subgraph cluster_67875034 { 
+   	label=Field
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   Field67875034[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Field</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >#   charList: Guy[] [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   gameField: Tile[][] [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   rand: Random [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ Field()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getGameField(): Tile[][]</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getTileInfo(i: int, j: int)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ printField()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ redo(charList: Guy[])</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+
+subgraph cluster_71979 { 
+   	label=Guy
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   Guy71979[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Guy</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >#   active: boolean [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   attack: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   defence: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   exhaustion: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   exp: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   gameField: Field [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   hp: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   lv: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   max_hp: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   name: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   pos: Position [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   step: int [1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ Guy(name: String, hp: int, max_hp: int, attack: int, defence: int, pos: Position, lv: int)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ act(enemy: Guy)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ attackEnemy(enemy: Guy)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ canMoveTo(x: int, y: int, f: Field): boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >+ check(enemy: Guy)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getPos(): Position</TD></TR>
+<TR><TD ALIGN="LEFT" >+ moveToPos(x: int, y: int, f: Field)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+
+subgraph cluster_812449097 { 
+   	label=Position
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   Position812449097[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Position</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >#   x: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   y: int [1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ Position(x: int, y: int)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getX(): int</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getY(): int</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+
+subgraph cluster_83356 { 
+   	label=Spy
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   Spy83356[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Spy</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   responses: String[] [0..*]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ Spy(hp: int, max_hp: int, attack: int, defence: int, pos: Position, lv: int)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ act(enemy: Guy)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+
+'edges    
+Battle1982676184 -> Guy71979[label="attacker
+[0..1]"];
+Battle1982676184 -> Guy71979[label="defender
+[0..1]"];
+Guy71979 -> Field67875034[label="gameField
+[0..1]"];
+Guy71979 -> Position812449097[label="pos
+[0..1]"];
+Guy71979 -> Soldier365946526[arrowhead=none, arrowtail=empty, dir=both];
+Guy71979 -> Spy83356[arrowhead=none, arrowtail=empty, dir=both];
+Main2390489 -> Battle1982676184[label="actCharacter() -> Battle()"];
+Main2390489 -> Soldier365946526[label="main() -> Soldier()"];
+Main2390489 -> Spy83356[label="main() -> Spy()"];
+    
+}
+@enduml

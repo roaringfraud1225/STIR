@@ -4,7 +4,7 @@ public class Spy extends Guy{
 
     private String[] responses = new String[] {"коммунизм - это будущее!", "нацизм - это античеловеческая идеология", "идеи Ленина вечны!", "нацисты - враги Германии!", "коммунисты борятся с нацистскими угнетателями!"};
     public Spy(int hp, int max_hp, int attack, int defence, Position pos, int lv) {
-        super("Штирлиц", hp, max_hp, attack, defence, pos, lv);
+        super("Диверсант", hp, max_hp, attack, defence, pos, lv);
     }
 
     @Override

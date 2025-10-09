@@ -1,12 +1,12 @@
 import java.util.Random;
 import java.util.Scanner;
 
-public class Battle {
+public class Battle implements BattleActions{
     protected Guy attacker;
     protected Guy defender;
 
     public boolean flag;
-
+    @Override
     public void whoWon(){
         if(attacker.active){
             System.out.println(attacker.name + " победил!");
@@ -17,10 +17,8 @@ public class Battle {
             flag = false;
         }
     }
-    public Battle(Guy attacker, Guy defender, Field field){
-        this.attacker = attacker;
-        this.defender = defender;
-        System.out.println("НАЧИНАТСЯ БИТВА - " + attacker.name + " против " + defender.name + "а!");
+    @Override
+    public void theBattleOngoing(Field field){
         while(attacker.active && defender.active){
             System.out.println("Ход " + attacker.name + "a!");
             Scanner scan = new Scanner(System.in);
@@ -55,6 +53,12 @@ public class Battle {
             System.out.println();
         }
         whoWon();
+    }
+    public Battle(Guy attacker, Guy defender, Field field){
+        this.attacker = attacker;
+        this.defender = defender;
+        System.out.println("НАЧИНАТСЯ БИТВА - " + attacker.name + " против " + defender.name + "а!");
+        theBattleOngoing(field);
     }
 
 }
