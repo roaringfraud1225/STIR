@@ -1,8 +1,5 @@
-import javafx.geometry.Pos;
 
-import javax.management.BadAttributeValueExpException;
-
-public class Guy implements Movable{
+public class Guy implements Movable {
     protected int step = 0;
     protected String name;
     protected int hp;
@@ -27,21 +24,29 @@ public class Guy implements Movable{
     }
 
     @Override
-    public boolean canMoveTo(int x, int y, Field f){
+    public boolean canMoveTo(int x, int y, Field f) throws ImmovableException {
         if(f.gameField[x][y].getTerrain() == 1)
         {
-            System.out.println("На этой клетке находится здание. У Вас нет ключей от него.");
-            return false;
+            throw new ImmovableException("Вы не можете посетить это здание - у Вас нет ключей!");
         }
-        if(f.gameField[x][y].getTerrain() == 4)
+        else if(f.gameField[x][y].getTerrain() == 4)
         {
-            System.out.println("На этой клетке находится баррикада. Вы не можете сюда переместиться.");
-            return false;
+            throw new ImmovableException("");
         }
-        return true;
+        else return true;
     }
     @Override
-    public void moveToPos(int x, int y, Field f){
+    public void moveToPos(int x, int y, Field f) throws ImmovableException {
+        /*try{
+            canMoveTo(x, y, f);
+        }
+        catch (ImmovableException e){
+            System.out.println(e.getMessage());
+        }
+        finally {
+            if(canMoveTo(x, y, f))
+                this.pos = new Position(x, y);
+        }*/
         if(canMoveTo(x, y, f))
             this.pos = new Position(x, y);
     }

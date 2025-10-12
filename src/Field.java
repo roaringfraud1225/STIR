@@ -1,10 +1,11 @@
+import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 
 public class Field {
     public Tile[][] gameField = new Tile[5][5];
 
-    protected Guy[] charList;
+    protected ArrayList<Guy> charList;
     Random rand;
 
     public Field(){
@@ -17,7 +18,7 @@ public class Field {
             }
         }
     }
-    public void redo(Guy[] charList){
+    public void redo(ArrayList<Guy> charList){
         this.charList = charList;
         for(int i = 0; i < 5; i++){
             for(int j = 0; j < 5; j++)
@@ -26,18 +27,18 @@ public class Field {
                 gameField[i][j].stander = ' ';
             }
         }
-        if(charList[0].active) {
-            this.gameField[charList[0].getPos().getX()][charList[0].getPos().getY()].stander = 'Д';
-            this.gameField[charList[0].getPos().getX()][charList[0].getPos().getY()].isEmpty = false;
-            if(this.gameField[charList[0].getPos().getX()][charList[0].getPos().getY()].getTerrain() == 1 || this.gameField[charList[0].getPos().getX()][charList[0].getPos().getY()].getTerrain() == 4){
-                this.gameField[charList[0].getPos().getX()][charList[0].getPos().getY()].terrain--;
+        if(charList.get(0).active) {
+            this.gameField[charList.get(0).getPos().getX()][charList.get(0).getPos().getY()].stander = 'Д';
+            this.gameField[charList.get(0).getPos().getX()][charList.get(0).getPos().getY()].isEmpty = false;
+            if(this.gameField[charList.get(0).getPos().getX()][charList.get(0).getPos().getY()].getTerrain() == 1 || this.gameField[charList.get(0).getPos().getX()][charList.get(0).getPos().getY()].getTerrain() == 4){
+                this.gameField[charList.get(0).getPos().getX()][charList.get(0).getPos().getY()].terrain--;
             }
         }
-        if(charList[1].active) {
-            this.gameField[charList[1].getPos().getX()][charList[1].getPos().getY()].stander = 'Ф';
-            this.gameField[charList[1].getPos().getX()][charList[1].getPos().getY()].isEmpty = false;
-            if(this.gameField[charList[0].getPos().getX()][charList[0].getPos().getY()].getTerrain() == 1 || this.gameField[charList[0].getPos().getX()][charList[0].getPos().getY()].getTerrain() == 4){
-                this.gameField[charList[0].getPos().getX()][charList[0].getPos().getY()].terrain--;
+        if(charList.get(1).active) {
+            this.gameField[charList.get(1).getPos().getX()][charList.get(1).getPos().getY()].stander = 'Ф';
+            this.gameField[charList.get(1).getPos().getX()][charList.get(1).getPos().getY()].isEmpty = false;
+            if(this.gameField[charList.get(0).getPos().getX()][charList.get(0).getPos().getY()].getTerrain() == 1 || this.gameField[charList.get(0).getPos().getX()][charList.get(0).getPos().getY()].getTerrain() == 4){
+                this.gameField[charList.get(0).getPos().getX()][charList.get(0).getPos().getY()].terrain--;
             }
         }
     }
@@ -76,8 +77,8 @@ public class Field {
         if(owner == ' ')
             System.out.println("В данный момент на ней никого нет.");
         if(owner == 'Ф')
-            System.out.println("В данный момент на ней стоит " + charList[1].name + ".");
+            System.out.println("В данный момент на ней стоит " + charList.get(1).name + ".");
         if(owner == 'Ш')
-            System.out.println("В данный момент на ней стоит " + charList[0].name + ".");
+            System.out.println("В данный момент на ней стоит " + charList.get(0).name + ".");
     }
 }

@@ -1,7 +1,8 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 public class Main {
 
-    public static void actCharacter(Guy[] charList, Field f){
+    public static void actCharacter(ArrayList<Guy> charList, Field f) throws ImmovableException {
         Scanner scan = new Scanner(System.in);
         System.out.println("Введите 1, чтобы перемещаться, 2 - чтобы узнать тип местности в клетке, 3 - чтобы выйти.");
         int k = scan.nextInt();
@@ -15,18 +16,18 @@ public class Main {
             }
             else if(f.gameField[x][y].isEmpty)
             {
-                charList[0].moveToPos(x, y, f);
+                charList.get(0).moveToPos(x, y, f);
                 f.redo(charList);
                 f.printField();
             }
             else{
-                System.out.println("На клетке находится " + charList[1].name + "!");
-                Battle b = new Battle(charList[0], charList[1], f);
+                System.out.println("На клетке находится " + charList.get(1).name + "!");
+                Battle b = new Battle(charList.get(0), charList.get(1), f);
                 if(b.flag) {
-                    charList[1].active = false;
-                    charList[0].moveToPos(x, y, f);
+                    charList.get(1).active = false;
+                    charList.get(0).moveToPos(x, y, f);
                 }
-                else charList[0].active = false;
+                else charList.get(0).active = false;
                 f.redo(charList);
                 f.printField();
             }
@@ -44,10 +45,10 @@ public class Main {
             actCharacter(charList, f);
         }
     }
-    public static void main(String[] args) {
-        Guy[] charList = new Guy[10];
-        charList[0] = new Spy(100, 100, 7, 2, new Position(0, 0), 1);
-        charList[1] = new Soldier(150,150, 8, 4, new Position(2, 3), 1);
+    public static void main(String[] args) throws ImmovableException {
+        ArrayList<Guy> charList = new ArrayList<>();
+        charList.add(new Spy(100, 100, 7, 2, new Position(0, 0), 1));
+        charList.add(new Soldier(150,150, 8, 4, new Position(2, 3), 1));
         Field f = new Field();
         f.redo(charList);
         f.printField();
