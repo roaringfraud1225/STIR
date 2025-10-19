@@ -59,21 +59,47 @@ public class Field {
             System.out.println();
         }
     }
+    public void printFieldWithPath(ArrayList<Position> path){
+        Tile[][] temp = new Tile[5][5];
+        for(int i = 0; i < 5; i++)
+        {
+            for(int j = 0; j < 5; j++)
+            {
+                temp[i][j] = new Tile(gameField[i][j].getTerrain(), gameField[i][j].isEmpty);
+            }
+        }
+        for(int i = 0; i < path.size(); i++)
+        {
+            int x = path.get(i).getX(), y = path.get(i).getY();
+            temp[x][y].stander = '+';
+        }
+        for(int i = 0; i < 5; i++)
+        {
+            for(int j = 0; j < 5; j++)
+            {
+                if(temp[i][j].stander != ' ')
+                    System.out.print(temp[i][j].stander + " ");
+                else System.out.print(temp[i][j].getTerrain() + " ");
+            }
+            System.out.println();
+        }
+        System.out.println();
+    }
 
     public void getTileInfo(int i, int j){
         int type = gameField[i][j].getTerrain(), owner = gameField[i][j].stander;
         if(type == 0) //Plains
-            System.out.println("На клетке с координатами ("+ i + ", " + j+ ") находится равнина.");
+            System.out.println("На клетке с координатами ("+ (i+1) + ", " + (j+1)+ ") находится равнина.");
         if(type == 1) //Shack
-            System.out.println("На клетке с координатами ("+ i + ", " + j + ") находится здание.");
+            System.out.println("На клетке с координатами ("+ (i+1) + ", " + (j+1)+ ") находится здание.");
         if(type == 2) //Road
-            System.out.println("На клетке с координатами ("+ i + ", " + j + ") находится дорога.");
+            System.out.println("На клетке с координатами ("+ (i+1) + ", " + (j+1)+ ") находится дорога.");
         if(type == 3) //Hills
-            System.out.println("На клетке с координатами ("+ i + ", " + j + ") находится холм.");
+            System.out.println("На клетке с координатами ("+ (i+1) + ", " + (j+1)+ ") находится холм.");
         if(type == 4) //Barricade
-            System.out.println("На клетке с координатами ("+ i + ", " + j + ") находится баррикада.");
+            System.out.println("На клетке с координатами ("+ (i+1) + ", " + (j+1)+ ") находится баррикада.");
         if(type == 5) //
-            System.out.println("На клетке с координатами ("+ i + ", " + j + ") находится болото.");
+            System.out.println("На клетке с координатами ("+ (i+1) + ", " + (j+1)+ ") находится болото.");
         if(owner == ' ')
             System.out.println("В данный момент на ней никого нет.");
         if(owner == 'Ф')
