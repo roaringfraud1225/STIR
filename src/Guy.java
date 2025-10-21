@@ -1,6 +1,6 @@
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.PriorityQueue;
+import java.util.*;
+
+import static java.lang.Math.max;
 
 public class Guy implements Movable {
     protected int step = 0;
@@ -14,6 +14,12 @@ public class Guy implements Movable {
     protected int exp;
     protected int exhaustion = 0;
     protected boolean active = true;
+
+    protected Deque<Item> inventory = new ArrayDeque<>();
+    protected Weapon weapon;
+    protected Armor armor;
+
+
     public Guy(String name, int hp, int max_hp, int attack, int defence, Position pos, int lv){
         this.attack = attack;
         this.defence = defence;
@@ -25,7 +31,53 @@ public class Guy implements Movable {
         this.exp = 0;
     }
 
+    public void equipWeapon(Weapon w){
+        Weapon temp = new Weapon(this.weapon.attack_rate, this.weapon.name);
+        this.weapon = new Weapon(w.attack_rate, w.name);
+        inventory.remove(w);
+        inventory.add(temp);
+    }
+    public void equipArmor(Armor a){
+        Armor temp = new Armor(this.armor.defence_rate, this.armor.name);
+        this.armor = new Armor(a.defence_rate, a.name);
+        inventory.remove(a);
+        inventory.add(temp);
+    }
+    public void eat(Food h){
+        inventory.remove(h);
+        this.hp = max(max_hp, hp + h.heal_rate);
+    }
 
+    public void searchForItems(Field f){
+        int[][] neighbourDirections = {{0, 0}, {-1, 0}, {1, 0}, {0, -1}, {0, 1}};
+        for (int[] direction : neighbourDirections) {
+            int x = this.pos.getX() + direction[0], y = this.pos.getY() + direction[1];
+            if(x < 0 || x >= 5 || y < 0 || y >= 5){
+                continue;
+            }
+            if(f.gameField[x][y].weapon != null || f.gameField[x][y].armor != null || f.gameField[x][y].food != null){
+                Scanner input = new Scanner(System.in);
+                System.out.println("На клетке (" + (this.pos.getX() + direction[0] + 1) + "," + (this.pos.getY() + direction[1] + 1) + ") найден предмет! Взять его?");
+                String command = input.nextLine();
+                if(Objects.equals(command, "Да")) {
+                    if (f.gameField[x][y].weapon != null) {
+                        this.inventory.add(new Weapon(f.gameField[x][y].weapon.attack_rate, f.gameField[x][y].weapon.name));
+                        f.gameField[x][y].weapon = null;
+                    } else if (f.gameField[x][y].armor != null) {
+                        this.inventory.add(new Armor(f.gameField[x][y].armor.defence_rate, f.gameField[x][y].armor.name));
+                        f.gameField[x][y].armor = null;
+                    } else {
+                        this.inventory.add(new Food(f.gameField[x][y].food.heal_rate, f.gameField[x][y].food.name));
+                        f.gameField[x][y].food = null;
+                    }
+                }
+            }
+        }
+    }
+
+    public void special_ability(Field f){
+
+    }
 
     @Override
     public boolean canMoveTo(int x, int y, Field f) throws ImmovableException {
@@ -161,7 +213,7 @@ public class Guy implements Movable {
 
     public void attackEnemy(Guy enemy){
         System.out.println("* " + name + " атакует " + enemy.name + "a!");
-        enemy.hp = Math.max(0, enemy.hp - (attack*lv-enemy.defence*lv));
+        enemy.hp = max(0, enemy.hp - (attack*lv-enemy.defence*lv));
         if(enemy.hp == 0)
         {
             enemy.active = false;

@@ -17,6 +17,9 @@ public class Field {
                 this.gameField[i][j] = new Tile(rand.nextInt(5), true);
             }
         }
+        this.gameField[0][0].weapon = new Weapon(7, "Пистолет-пулемёт Шпагина");
+        this.gameField[rand.nextInt(5)][rand.nextInt(5)].armor = new Armor(5, "Лист брони танка Тигр");
+        this.gameField[rand.nextInt(5)][rand.nextInt(5)].food = new Food(40, "Консервы");
     }
     public void redo(ArrayList<Guy> charList){
         this.charList = charList;
@@ -91,7 +94,7 @@ public class Field {
         if(type == 0) //Plains
             System.out.println("На клетке с координатами ("+ (i+1) + ", " + (j+1)+ ") находится равнина.");
         if(type == 1) //Shack
-            System.out.println("На клетке с координатами ("+ (i+1) + ", " + (j+1)+ ") находится здание.");
+            System.out.println("На клетке с координатами ("+ (i+1) + ", " + (j+1)+ ") находится здание. У Вас нет доступа внутрь.");
         if(type == 2) //Road
             System.out.println("На клетке с координатами ("+ (i+1) + ", " + (j+1)+ ") находится дорога.");
         if(type == 3) //Hills
@@ -100,6 +103,8 @@ public class Field {
             System.out.println("На клетке с координатами ("+ (i+1) + ", " + (j+1)+ ") находится баррикада.");
         if(type == 5) //
             System.out.println("На клетке с координатами ("+ (i+1) + ", " + (j+1)+ ") находится болото.");
+        if(type == 6) //
+            System.out.println("На клетке с координатами ("+ (i+1) + ", " + (j+1)+ ") находится здание. У Вас есть доступ внутрь.");
         if(owner == ' ')
             System.out.println("В данный момент на ней никого нет.");
         if(owner == 'Ф')

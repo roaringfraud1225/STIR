@@ -2,6 +2,9 @@ public class Tile {
     protected int terrain;
     protected char stander = ' ';
     protected boolean isEmpty;
+    protected Weapon weapon = null;
+    protected Armor armor = null;
+    protected Food food = null;
 
     public Tile(int terrain, boolean isEmpty){
         this.isEmpty = isEmpty;
