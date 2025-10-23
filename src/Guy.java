@@ -87,22 +87,12 @@ public class Guy implements Movable {
         }
         else if(f.gameField[x][y].getTerrain() == 4)
         {
-            throw new ImmovableException("");
+            throw new ImmovableException("Вы не можете перемещаться по препятствиям!");
         }
         else return true;
     }
     @Override
     public void moveToPos(int x, int y, Field f) throws ImmovableException {
-        /*try{
-            canMoveTo(x, y, f);
-        }
-        catch (ImmovableException e){
-            System.out.println(e.getMessage());
-        }
-        finally {
-            if(canMoveTo(x, y, f))
-                this.pos = new Position(x, y);
-        }*/
         if(canMoveTo(x, y, f))
             this.pos = new Position(x, y);
     }
