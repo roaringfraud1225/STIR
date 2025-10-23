@@ -5,13 +5,15 @@ public class Main {
 
     public static void actCharacter(ArrayList<Guy> charList, Field f) throws ImmovableException {
         Scanner scan = new Scanner(System.in);
-        System.out.println("Введите 1, чтобы перемещаться, 2 - чтобы узнать тип местности в клетке, 3 - чтобы вычислить кратчайший маршрут между 2 клетками, 4 - чтобы осмотреть местность на наличие предметов, 5 - чтобы посмотреть инвентарь, 6 - чтобы экипировать что-нибудь из инвентаря.");
+        System.out.println("1 - перемещаться, 2 - узнать тип местности в клетке, 3 - вычислить кратчайший маршрут между 2 клетками, 4 - осмотреть местность на наличие предметов");
+        System.out.println("5 - посмотреть инвентарь, 6 - экипировать что-нибудь из инвентаря, 7 - использовать спецспособность персонажа.");
         int k = scan.nextInt();
         if(k == 1)
         {
-            System.out.println("Введите координаты конечной клетки.");
-            int y = scan.nextInt()-1, x = scan.nextInt()-1;
-            if(x > 4 || y > 4 || x < 0 || y < 0){
+            System.out.println("Введите кооординаты конечной клетки.");
+            Scanner direct = new Scanner(System.in);
+            int x = direct.nextInt()-1, y = direct.nextInt()-1;
+            if(x < 0 || y < 0 || x >= 5 || y >= 5){
                 System.out.println("Введены некорректные координаты.");
                 f.printField();
             }
@@ -19,23 +21,35 @@ public class Main {
                 System.out.println("Введены текущие координаты.");
                 f.printField();
             }
-            else if(f.gameField[x][y].isEmpty)
-            {
-                charList.get(0).moveToPos(x, y, f);
-                f.redo(charList);
-                f.printField();
-            }
             else{
-                System.out.println("На клетке находится " + charList.get(1).name + "!");
-                Battle b = new Battle(charList.get(0), charList.get(1), f);
-                if(b.flag) {
-                    charList.get(1).active = false;
-                    charList.get(0).moveToPos(x, y, f);
+                double dist = charList.get(0).getShortestWay(f, charList.get(0).pos.getX(), charList.get(0).pos.getY(), x, y);
+                if(dist == -1)
+                {
+                    System.out.println("До этой клетки нельзя добраться.");
+                    f.printField();
                 }
-                else charList.get(0).active = false;
-                f.redo(charList);
-                f.printField();
+                else if(f.gameField[x][y].isEmpty)
+                {
+                    System.out.println("Вы добрались, потратив столько ходов: " + dist + ".");
+                    int x0 = charList.get(0).pos.getX(), y0 = charList.get(0).pos.getY();
+                    charList.get(0).moveToPos(x, y, f);
+                    f.redo(charList);
+                    f.printField();
+                }
+                else{
+                    System.out.println("Вы добрались, потратив столько ходов: " + dist + ".");
+                    System.out.println("На клетке находится " + charList.get(1).name + "!");
+                    Battle b = new Battle(charList.get(0), charList.get(1), f);
+                    if(b.flag) {
+                        charList.get(1).active = false;
+                        charList.get(0).moveToPos(x, y, f);
+                    }
+                    else charList.get(0).active = false;
+                    f.redo(charList);
+                    f.printField();
+                }
             }
+
 
             actCharacter(charList, f);
         }

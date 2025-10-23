@@ -31,7 +31,7 @@ public class Field {
             }
         }
         if(charList.get(0).active) {
-            this.gameField[charList.get(0).getPos().getX()][charList.get(0).getPos().getY()].stander = 'Д';
+            this.gameField[charList.get(0).getPos().getX()][charList.get(0).getPos().getY()].stander = 'Ш';
             this.gameField[charList.get(0).getPos().getX()][charList.get(0).getPos().getY()].isEmpty = false;
             if(this.gameField[charList.get(0).getPos().getX()][charList.get(0).getPos().getY()].getTerrain() == 1 || this.gameField[charList.get(0).getPos().getX()][charList.get(0).getPos().getY()].getTerrain() == 4){
                 this.gameField[charList.get(0).getPos().getX()][charList.get(0).getPos().getY()].terrain--;
@@ -92,19 +92,19 @@ public class Field {
     public void getTileInfo(int i, int j){
         int type = gameField[i][j].getTerrain(), owner = gameField[i][j].stander;
         if(type == 0) //Plains
-            System.out.println("На клетке с координатами ("+ (i+1) + ", " + (j+1)+ ") находится равнина.");
+            System.out.println("На клетке с координатами ("+ (j+1) + ", " + (i+1)+ ") находится равнина.");
         if(type == 1) //Shack
-            System.out.println("На клетке с координатами ("+ (i+1) + ", " + (j+1)+ ") находится здание. У Вас нет доступа внутрь.");
+            System.out.println("На клетке с координатами ("+ (j+1) + ", " + (i+1)+ ") находится здание. У Вас нет доступа внутрь.");
         if(type == 2) //Road
-            System.out.println("На клетке с координатами ("+ (i+1) + ", " + (j+1)+ ") находится дорога.");
+            System.out.println("На клетке с координатами ("+ (j+1) + ", " + (i+1)+ ") находится дорога.");
         if(type == 3) //Hills
-            System.out.println("На клетке с координатами ("+ (i+1) + ", " + (j+1)+ ") находится холм.");
+            System.out.println("На клетке с координатами ("+ (j+1) + ", " + (i+1)+ ") находится холм.");
         if(type == 4) //Barricade
-            System.out.println("На клетке с координатами ("+ (i+1) + ", " + (j+1)+ ") находится баррикада.");
+            System.out.println("На клетке с координатами ("+ (j+1) + ", " + (i+1)+ ") находится баррикада.");
         if(type == 5) //
-            System.out.println("На клетке с координатами ("+ (i+1) + ", " + (j+1)+ ") находится болото.");
+            System.out.println("На клетке с координатами ("+ (j+1) + ", " + (i+1)+ ") находится болото.");
         if(type == 6) //
-            System.out.println("На клетке с координатами ("+ (i+1) + ", " + (j+1)+ ") находится здание. У Вас есть доступ внутрь.");
+            System.out.println("На клетке с координатами ("+ (j+1) + ", " + (i+1)+ ") находится здание. У Вас есть доступ внутрь.");
         if(owner == ' ')
             System.out.println("В данный момент на ней никого нет.");
         if(owner == 'Ф')

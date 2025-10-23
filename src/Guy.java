@@ -141,7 +141,6 @@ public class Guy implements Movable {
         }
         if (!isTileAccessible(field.gameField[x0][y0]) ||
                 !isTileAccessible(field.gameField[x][y])) {
-            System.out.println(x0 + " " + y0 + " " + x + " " + y);
             return -1;
         }
         double[][] distances = new double[5][5];
@@ -179,16 +178,13 @@ public class Guy implements Movable {
                 int backX = x1 + direction[0];
                 int backY = y1 + direction[1];
 
-                // Проверяем границы поля
                 if (backX >= 0 && backX < 5 && backY >= 0 && backY < 5) {
                     Tile neighbourTile = field.gameField[backX][backY];
 
-                    // Проверяем, можно ли посетить соседнюю клетку
                     if (isTileAccessible(neighbourTile)) {
                         double moveCost = getMoveCost(neighbourTile);
                         double newDistance = distances[x1][y1] + moveCost;
 
-                        // Если нашли более короткий путь
                         if (newDistance < distances[backX][backY]) {
                             distances[backX][backY] = newDistance;
                             previous[backX][backY] = new Position(x1, y1);
@@ -224,11 +220,11 @@ public class Guy implements Movable {
 
     public void check(Guy enemy){
         if(enemy.getClass() == Spy.class){
-            System.out.println("* ШТИРЛИЦ - " + enemy.lv + " УР, " + enemy.hp + " ОЗ, " + enemy.attack + " АТК " + enemy.defence + " ЗАЩ.");
-            System.out.println("* ШТАНДАРТЕНФЮРЕР СС. ПЕРВОКЛАССНЫЙ СОВЕТСКИЙ РАЗВЕДЧИК, РЕШИВШИЙ ВЗЯТЬ ВСЁ В СВОИ РУКИ.");
+            System.out.println("* ДИВЕРСАНТ - " + enemy.lv + " УР, " + enemy.hp + " ОЗ, " + enemy.attack + " АТК " + enemy.defence + " ЗАЩ.");
+            System.out.println("* ПЕРВОКЛАССНЫЙ СОВЕТСКИЙ РАЗВЕДЧИК, РЕШИВШИЙ ВЗЯТЬ ВСЁ В СВОИ РУКИ.");
         }
         if(enemy.getClass() == Soldier.class){
-            System.out.println("* ФАШИСТ - " + enemy.lv + " УР, " + enemy.hp + " ОЗ, " + enemy.attack + " АТК " + enemy.defence + " ЗАЩ.");
+            System.out.println("* СОЛДАТ - " + enemy.lv + " УР, " + enemy.hp + " ОЗ, " + enemy.attack + " АТК " + enemy.defence + " ЗАЩ.");
             System.out.println("* РЯДОВОЙ СОЛДАТ ГЕРМАНСКОГО РЕЙХА. ВРАГ ЧЕЛОВЕЧЕСТВА, КОТОРОМУ ПРОМЫЛИ МОЗГИ ЕМУ ПОДОБНЫЕ.");
         }
     }
