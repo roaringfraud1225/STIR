@@ -57,7 +57,36 @@ public class Field {
             {
                 if(gameField[i][j].stander != ' ')
                     System.out.print(gameField[i][j].stander + " ");
-                else System.out.print(gameField[i][j].getTerrain() + " ");
+                else {
+                    if(gameField[i][j].getTerrain() == 1)
+                    {
+                        System.out.print("■" + " ");
+                    }
+                    if(gameField[i][j].getTerrain() == 0)
+                    {
+                        System.out.print("_" + " ");
+                    }
+                    if(gameField[i][j].getTerrain() == 2)
+                    {
+                        System.out.print("=" + " ");
+                    }
+                    if(gameField[i][j].getTerrain() == 3)
+                    {
+                        System.out.print("^" + " ");
+                    }
+                    if(gameField[i][j].getTerrain() == 4)
+                    {
+                        System.out.print("☒" + " ");
+                    }
+                    if(gameField[i][j].getTerrain() == 5)
+                    {
+                        System.out.print("~" + " ");
+                    }
+                    if(gameField[i][j].getTerrain() == 6)
+                    {
+                        System.out.print("□" + " ");
+                    }
+                }
             }
             System.out.println();
         }

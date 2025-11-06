@@ -17,9 +17,18 @@ public class Battle implements BattleActions{
             flag = false;
         }
     }
+
+    public void showHP(){
+        System.out.println("У " + attacker.name + "а осталось " + attacker.hp + " ОЗ. У " + defender.name + "а осталось " + defender.hp + " ОЗ.");
+        if(defender.exhaustion > 0)
+        {
+            System.out.println(defender.name + " готов сдаться на " + defender.exhaustion + "%!");
+        }
+    }
     @Override
     public void theBattleOngoing(Field field){
         while(attacker.active && defender.active){
+            showHP();
             System.out.println("Ход " + attacker.name + "a!");
             Scanner scan = new Scanner(System.in);
             System.out.println("Нажмите 1, если хотите атаковать, 2, если хотите действовать, 3, если хотите проверить врага, 4, если хотите проверить себя.");
