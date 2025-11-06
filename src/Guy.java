@@ -112,6 +112,8 @@ public class Guy implements Movable {
                 return 1.5;
             case 5:
                 return 2.0;
+            case 6:
+                return 1.75;
             default:
                 return Double.MAX_VALUE;
         }

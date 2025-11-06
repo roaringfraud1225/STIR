@@ -12,7 +12,7 @@ public class Main {
         {
             System.out.println("Введите кооординаты конечной клетки.");
             Scanner direct = new Scanner(System.in);
-            int x = direct.nextInt()-1, y = direct.nextInt()-1;
+            int y = direct.nextInt()-1, x = direct.nextInt()-1;
             if(x < 0 || y < 0 || x >= 5 || y >= 5){
                 System.out.println("Введены некорректные координаты.");
                 f.printField();
@@ -79,7 +79,7 @@ public class Main {
             }
             Scanner input = new Scanner(System.in);
             System.out.println("Введите координаты конечной клетки.");
-            int x = input.nextInt()-1, y = input.nextInt()-1;
+            int y = input.nextInt()-1, x = input.nextInt()-1;
             double distance = charList.get(0).getShortestWay(f, x0, y0, x, y);
             ArrayList<Position> path = charList.get(0).path;
             if(distance == -1)
